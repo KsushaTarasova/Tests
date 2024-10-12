@@ -22,5 +22,9 @@ public class BookTest {
         Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
         assertTrue(book.isLongBook());
     }
-
+    @Test
+    public void testGetDescription() {
+        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
+        assertEquals("Book: The Hobbit by J.R.R. Tolkien has 310 pages.", book.getDescription());
+    }
 }
