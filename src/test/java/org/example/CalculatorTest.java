@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     private Calculator calculator;
@@ -27,6 +28,12 @@ public class CalculatorTest {
     @Test
     public void testDivide() {
         assertEquals(7, calculator.divide(28, 4));
+    }
+    @Test
+    public void testDivideByZero() {
+        assertThrows(ArithmeticException.class, () -> {
+            calculator.divide(100, 0);
+        }, "ArithmeticException was expected");
     }
 
 }
