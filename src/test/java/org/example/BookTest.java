@@ -10,4 +10,10 @@ public class BookTest {
         Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
         assertEquals("The Hobbit", book.getTitle());
     }
+    @Test
+    public void testSetTitle(){
+        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
+        book.setTitle("The Lord of the Rings");
+        assertEquals("The Lord of the Rings", book.getTitle());
+    }
 }
