@@ -36,6 +36,10 @@ public class CalculatorTest {
             calculator.divide(100, 0);
         }, "ArithmeticException was expected");
     }
+    @Test
+    public void testModulus(){
+        assertEquals(10, calculator.modulus(210, 20));
+    }
     @AfterEach
     public void print() {
         System.out.println("Тестирование окончено");
