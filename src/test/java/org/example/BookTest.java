@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BookTest {
     @Test
@@ -16,4 +17,10 @@ public class BookTest {
         book.setTitle("The Lord of the Rings");
         assertEquals("The Lord of the Rings", book.getTitle());
     }
+    @Test
+    public void testIsLongBook(){
+        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
+        assertTrue(book.isLongBook());
+    }
+
 }
