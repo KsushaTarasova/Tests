@@ -27,4 +27,11 @@ public class BookTest {
         Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
         assertEquals("Book: The Hobbit by J.R.R. Tolkien has 310 pages.", book.getDescription());
     }
+    @Test
+    public void testSetPages(){
+        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
+        book.setPages(250);
+        assertEquals(250, book.getPages());
+    }
+
 }
