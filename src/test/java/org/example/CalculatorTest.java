@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +35,10 @@ public class CalculatorTest {
         assertThrows(ArithmeticException.class, () -> {
             calculator.divide(100, 0);
         }, "ArithmeticException was expected");
+    }
+    @AfterEach
+    public void print() {
+        System.out.println("Тестирование окончено");
     }
 
 }
