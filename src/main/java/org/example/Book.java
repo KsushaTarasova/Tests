@@ -20,10 +20,7 @@ public class Book {
         this.author = author;
         this.pages = pages;
     }
-    public Book(String title, String author, int pages, Connection connection) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
+    public Book(Connection connection) {
         this.connection = connection;
     }
 
