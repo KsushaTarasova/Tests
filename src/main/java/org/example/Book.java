@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
 public class Book {
     private String title;
@@ -18,6 +19,12 @@ public class Book {
         this.title = title;
         this.author = author;
         this.pages = pages;
+    }
+    public Book(String title, String author, int pages, Connection connection) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.connection = connection;
     }
 
     public String getTitle() {
@@ -81,6 +88,18 @@ public class Book {
         String s = text.replaceAll("\\s+", "").toLowerCase();
         StringBuilder reversed = new StringBuilder(s).reverse();
         return s.contentEquals(reversed);
+    }
+
+    public List<String> getAllBooks() throws SQLException {
+        List<String> books = new ArrayList<>();
+        String sql = "select name from books";
+        try(PreparedStatement stmt = connection.prepareStatement(sql)){
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                books.add(rs.getString("name"));
+            }
+        }
+        return books;
     }
 
 }
