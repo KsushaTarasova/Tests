@@ -3,6 +3,7 @@ package org.example;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -11,6 +12,7 @@ public class Book {
     private String title;
     private String author;
     private int pages;
+    private Connection connection;
 
     public Book(String title, String author, int pages) {
         this.title = title;
@@ -73,6 +75,12 @@ public class Book {
 
     public Map<String, Integer> addToCollection (Map<String, Integer> input){
         return new HashMap<>(input);
+    }
+
+    public boolean isPalindrome(String text){
+        String s = text.replaceAll("\\s+", "").toLowerCase();
+        StringBuilder reversed = new StringBuilder(s).reverse();
+        return s.contentEquals(reversed);
     }
 
 }
