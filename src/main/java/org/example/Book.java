@@ -3,6 +3,8 @@ package org.example;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Book {
@@ -67,6 +69,10 @@ public class Book {
 
     public void writeFile(String filePath, String content) throws IOException {
         Files.writeString(Paths.get(filePath), content);
+    }
+
+    public Map<String, Integer> addToCollection (Map<String, Integer> input){
+        return new HashMap<>(input);
     }
 
 }
