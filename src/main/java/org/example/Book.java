@@ -1,5 +1,10 @@
 package org.example;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Objects;
+
 public class Book {
     private String title;
     private String author;
@@ -55,4 +60,13 @@ public class Book {
     public int hashCode() {
         return Objects.hash(title, author, pages);
     }
+
+    public String readFile(String filePath) throws IOException {
+        return Files.readString(Paths.get(filePath));
+    }
+
+    public void writeFile(String filePath, String content) throws IOException {
+        Files.writeString(Paths.get(filePath), content);
+    }
+
 }
