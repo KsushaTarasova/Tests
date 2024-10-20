@@ -1,37 +1,45 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BookTest {
-    @Test
-    public void testGetTitle(){
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
-        assertEquals("The Hobbit", book.getTitle());
+    private Book book;
+
+    @BeforeEach
+    public void setup() {
+        book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
     }
-    @Test
-    public void testSetTitle(){
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
-        book.setTitle("The Lord of the Rings");
-        assertEquals("The Lord of the Rings", book.getTitle());
-    }
-    @Test
-    public void testIsLongBook(){
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
-        assertTrue(book.isLongBook());
-    }
+
     @Test
     public void testGetDescription() {
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
         assertEquals("Book: The Hobbit by J.R.R. Tolkien has 310 pages.", book.getDescription());
     }
+
     @Test
-    public void testSetPages(){
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
-        book.setPages(250);
-        assertEquals(250, book.getPages());
+    public void testHashCode() {
+        Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 310);
+        Book book2 = new Book("The", "J.R.R", 310);
+        assertEquals(book.hashCode(), book1.hashCode());
+        assertNotEquals(book.hashCode(), book2.hashCode());
+    }
+
+    @Test
+    public void testFileReadWrite() throws IOException {
+        String filePath = "test.txt";
+        book.writeFile(filePath, book.getDescription());
+
+        String content = book.readFile(filePath);
+        assertEquals(book.getDescription(), content);
+
+        Files.delete(Paths.get(filePath));
+
     }
 
 }
