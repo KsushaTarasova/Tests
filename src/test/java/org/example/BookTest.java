@@ -1,16 +1,21 @@
 package org.example;
 
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 public class BookTest {
     private Book book;
@@ -57,6 +62,17 @@ public class BookTest {
         assertEquals(1000, result.get("Tolkien").intValue());
         assertEquals(500, result.get("King").intValue());
         assertEquals(600, result.get("Bronte").intValue());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "'madam', true",
+            "'racecar', true",
+            "'hello', false",
+            "'A man a plan a canal Panama', true"
+    })
+    public void testIsPalindrome(String input, boolean expected){
+        assertEquals(expected, book.isPalindrome(input));
     }
 
 }
