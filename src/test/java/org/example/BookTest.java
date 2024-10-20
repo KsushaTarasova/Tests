@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,6 +43,20 @@ public class BookTest {
 
         Files.delete(Paths.get(filePath));
 
+    }
+
+    @Test
+    public void testAddToCollection(){
+        HashMap<String, Integer> input = new HashMap<>();
+        input.put("Tolkien", 1000);
+        input.put("King", 500);
+        input.put("Bronte", 600);
+
+        Map<String, Integer> result = book.addToCollection(input);
+
+        assertEquals(1000, result.get("Tolkien").intValue());
+        assertEquals(500, result.get("King").intValue());
+        assertEquals(600, result.get("Bronte").intValue());
     }
 
 }
